@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Mahasiswa')
+@section('title', 'mk')
 
 @section('breadcrumb')
     <li class="breadcrumb-item active">Mata Kuliah</li>
@@ -14,7 +14,7 @@
                     <h4 class="card-title">Tabel Mata Kuliah</h4>
                 </div>
                 <div class="col-2">
-                    <a class="btn btn-sm btn-primary float-end" href="{{ url('/mahasiswa/create') }}">Tambah</a>
+                    <a class="btn btn-sm btn-primary float-end" href="{{ url('/mk/create') }}">Tambah</a>
                 </div>
             </div>
         </div>

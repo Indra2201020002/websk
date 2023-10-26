@@ -1,9 +1,9 @@
 @extends('layout.master')
 
-@section('title', 'Tambah Mahasiswa')
+@section('title', 'Tabel Mata Kuliah')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ url('/mahasiswa') }}">Mata Kuliah</a></li>
+    <li class="breadcrumb-item"><a href="{{ url('/mk') }}">Mata Kuliah</a></li>
     <li class="breadcrumb-item active">Tambah</li>
 @endsection
 
@@ -11,10 +11,10 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <h4 class="card-title">Form Tambah Mata Kuliah</h4>
+                <h4 class="card-title">Form Tabel Mata Kuliah</h4>
             </div>
         </div>
-        <form action="{{ url('/mahasiswa') }}" method="POST">
+        <form action="{{ url('/mk') }}" method="POST">
             <div class="card-body">
                 @csrf
                 <div>
@@ -22,7 +22,7 @@
                     <input class="form-control" type="text" name="nim">
                 </div>
                 <div>
-                    <label class="form-label">Mata Kuliah Yang Diambil</label>
+                    <label class="form-label">Mata Kuliah</label>
                     <input class="form-control" type="text" name="mk">
                 </div>
                 <div>

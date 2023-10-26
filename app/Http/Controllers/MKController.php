@@ -15,17 +15,17 @@ class MKController extends Controller
         [
             'nim' => "234567",
             'jurusan' => "TI",
-            'mk' => "Sensor And Transduser",
+            'mk' => "Object Oriented Programming",
         ],
         [
             'nim' => "345678",
             'jurusan' => "SK",
-            'mk' => "Digital Image Processing",
+            'mk' => "Sensor And Transduser",
         ],
         [
             'nim' => "456789",
             'jurusan' => "DGM",
-            'mk' => "electronic",
+            'mk' => "Digital Image Processing",
         ],
     ];
 
@@ -37,6 +37,11 @@ class MKController extends Controller
     public function create()
     {
         return view('mk.create');
+    }
+
+    public function edit($id)
+    {
+        return view('mk.edit', ['data' => $this->data[$id], 'id' => $id]);
     }
 
     public function show($id)
