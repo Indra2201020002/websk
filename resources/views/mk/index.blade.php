@@ -23,7 +23,7 @@
                 <thead>
                     <tr>
                         <th scope="col">NIM</th>
-                        <th scope="col">Mata Kuliah</th>
+                        <th scope="col">Mata Kuliah Yang Diambil</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col"></th>
                     </tr>
