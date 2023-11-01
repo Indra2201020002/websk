@@ -29,7 +29,6 @@
                 <div>
                     <label class="form-label">Mata Kuliah Yang Ingin Diambil</label>
                     <select class="form-select" name="mk">
-                        <option {{ $data['jurusan'] == 'Electronic' ? 'selected' : '' }} value="Electronic">TI</option>
                         <option {{ $data['jurusan'] == 'Sensor And Transduser' ? 'selected' : '' }} value="Sensor And Transduser">Sensor And Transduser</option>
                         <option {{ $data['jurusan'] == 'Digital Image Processing' ? 'selected' : '' }} value="Digital Image Processing">Digital Image Processing</option>
                         <option {{ $data['jurusan'] == 'Web Programming' ? 'selected' : '' }} value="Web Programming">Web Programming</option>

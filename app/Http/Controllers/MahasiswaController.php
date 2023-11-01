@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
 {
@@ -31,7 +32,12 @@ class MahasiswaController extends Controller
 
     public function index()
     {
-        return view('mahasiswa.index', ['data' => $this->data]);
+        $mhs = DB::table('mhs')
+        ->select("mhs.id", "nim", "mhs.nama", "jurusan_id", "jurusan.nama AS jurusan_nama")
+        ->join('jurusan', 'jurusan.id', '=', 'mhs.jurusan_id')
+        ->get();
+ 
+        return view('mahasiswa.index', ['data' => $mhs]);
     }
 
     public function create()
@@ -41,7 +47,15 @@ class MahasiswaController extends Controller
 
     public function edit($id)
     {
-        return view('mahasiswa.edit', ['data' => $this->data[$id], 'id' => $id]);
+        $mhs = DB::table('mhs')
+        ->select("mhs.id", "nim", "mhs.nama", "jurusan_id", "jurusan.nama AS jurusan_nama")
+        ->join('jurusan', 'jurusan.id', '=', 'mhs.jurusan_id')
+        ->where('mhs.id', $id)
+        ->first();
+
+        $jurusan = DB::table('jurusan')->get();
+
+        return view('mahasiswa.edit', ['data' => $mhs, 'id' => $id, 'jurusan' => $jurusan]);
     }
 
     public function show($id)
