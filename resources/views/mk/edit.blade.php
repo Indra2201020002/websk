@@ -19,26 +19,19 @@
             @method('PUT')
             <div class="card-body">
                 <div>
-                    <label class="form-label">NIM</label>
-                    <input class="form-control" type="text" name="nim" value="{{ $data['nim'] }}">
+                    <label class="form-label">ID</label>
+                    <input class="form-control" type="text" name="id" value="{{ $mk->idmk }}">
+                </div>
+                <div>
+                    <label class="form-label">Nama Mata Kuliah</label>
+                    <input class="form-control" type="text" name="nama" value="{{ $mk->namamk }}">
                 </div>
                 <div>
                     <label class="form-label">Jurusan</label>
-                    <input class="form-control" type="text" name="jurusan" value="{{ $data['jurusan'] }}">
-                </div>
-                <div>
-                    <label class="form-label">Mata Kuliah Yang Ingin Diambil</label>
-                    <select class="form-select" name="mk">
-                        <option {{ $data['jurusan'] == 'Sensor And Transduser' ? 'selected' : '' }} value="Sensor And Transduser">Sensor And Transduser</option>
-                        <option {{ $data['jurusan'] == 'Digital Image Processing' ? 'selected' : '' }} value="Digital Image Processing">Digital Image Processing</option>
-                        <option {{ $data['jurusan'] == 'Web Programming' ? 'selected' : '' }} value="Web Programming">Web Programming</option>
-                        <option {{ $data['jurusan'] == 'Object Oriented Programming' ? 'selected' : '' }} value="Object Oriented Programming">Object Oriented Programming</option>
-                        <option {{ $data['jurusan'] == 'Algorithm' ? 'selected' : '' }} value="Algorithm">Algorithm</option>
-                        <option {{ $data['jurusan'] == 'Database' ? 'selected' : '' }} value="Database">Database</option>
-                        <option {{ $data['jurusan'] == 'Architecture Computer' ? 'selected' : '' }} value="Architecture Computer">Architecture Computer</option>
-                        <option {{ $data['jurusan'] == 'Administrasi Server' ? 'selected' : '' }} value="Administrasi Server">Administrasi Server</option>
-                        <option {{ $data['jurusan'] == 'Matematika' ? 'selected' : '' }} value="Matematika">Matematika</option>
-
+                    <select class="form-select" name="jurusan">
+                        @foreach($jurusan as $j)
+                            <option {{ $mk->jurusan_id == $j->id ? 'selected' : '' }} value="{{ $j->id }}">{{ $j->nama }}</option>
+                        @endforeach
                     </select>
                 </div>
 

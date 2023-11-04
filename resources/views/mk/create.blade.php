@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <h4 class="card-title">Form Tabel Mata Kuliah</h4>
+                <h4 class="card-title">Form Tambah Mata Kuliah</h4>
             </div>
         </div>
         <form action="{{ url('/mk') }}" method="POST">
@@ -22,16 +22,12 @@
                     <input class="form-control" type="text" name="nim">
                 </div>
                 <div>
-                    <label class="form-label">Mata Kuliah</label>
-                    <input class="form-control" type="text" name="mk">
+                    <label class="form-label">Nama Mata Kuliah</label>
+                    <input class="form-control" type="text" name="nama">
                 </div>
                 <div>
                     <label class="form-label">Jurusan</label>
-                    <select class="form-select" name="jurusan">
-                        <option value="1">TI</option>
-                        <option value="2">SK</option>
-                        <option value="3">DGM</option>
-                    </select>
+                    <input class="form-control" type="text" name="nama">
                 </div>
 
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MKController extends Controller
 {
@@ -31,17 +32,30 @@ class MKController extends Controller
 
     public function index()
     {
-        return view('mk.index', ['data' => $this->data]);
+        $mk = DB::table('mk')
+        ->select("mk.idmk", "mk.namamk", "jurusan_id", "jurusan.nama AS jurusan_nama")
+        ->join('jurusan', 'jurusan.id', '=', 'mk.jurusan_id')
+        ->get();
+
+        return view('mk.index', ['mk' => $mk] );
     }
 
     public function create()
     {
         return view('mk.create');
     }
-
+    
     public function edit($id)
     {
-        return view('mk.edit', ['data' => $this->data[$id], 'id' => $id]);
+        $mk = DB::table('mk')
+        ->select("mk.idmk", "mk.namamk", "jurusan_id", "jurusan.nama AS jurusan_nama")
+        ->join('jurusan', 'jurusan.id', '=', 'mk.jurusan_id')
+        ->where('mk.idmk', $id)
+        ->first();
+
+        $jurusan = DB::table('jurusan')->get();
+
+        return view('mk.edit', ['mk' => $mk, 'id' => $id, 'jurusan' => $jurusan]);
     }
 
     public function show($id)

@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-10">
-                    <h4 class="card-title">Tabel Mata Kuliah</h4>
+                    <h4 class="card-title">Tabel Data Mata Kuliah</h4>
                 </div>
                 <div class="col-2">
                     <a class="btn btn-sm btn-primary float-end" href="{{ url('/mk/create') }}">Tambah</a>
@@ -23,20 +23,20 @@
                 <thead>
                     <tr>
                         <th scope="col">NIM</th>
-                        <th scope="col">Mata Kuliah Yang Diambil</th>
+                        <th scope="col">Nama Mata Kuliah</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $d)
+                    @foreach ($mk as $m)
                         <tr>
-                            <td>{{ $d['nim'] }}</td>
-                            <td>{{ $d['mk'] }}</td>
-                            <td>{{ $d['jurusan'] }}</td>
+                            <td>{{ $m->idmk }}</td>
+                            <td>{{ $m->namamk }}</td>
+                            <td>{{ $m->jurusan_nama }}</td>
                             <td class="float-end">
                                 <a class="btn btn-sm btn-warning"
-                                    href="{{ url('/mk/' . $loop->index . '/edit') }}">Ubah</a>
+                                    href="{{ url('/mk/' . $m->idmk . '/edit') }}">Ubah</a>
                                 <button class="btn btn-sm btn-danger">Hapus</button>
                             </td>
                         </tr>
