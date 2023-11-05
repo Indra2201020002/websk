@@ -42,7 +42,7 @@ class MKController extends Controller
 
     public function create()
     {
-        return view('mahasiswa.create');
+        return view('mk.create');
     }
     
     public function edit($id)
