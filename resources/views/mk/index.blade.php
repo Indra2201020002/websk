@@ -22,7 +22,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">NIM</th>
+                        <th scope="col">ID Mata Kuliah</th>
                         <th scope="col">Nama Mata Kuliah</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col"></th>
