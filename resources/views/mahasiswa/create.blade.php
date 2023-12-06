@@ -8,6 +8,17 @@
 @endsection
 
 @section('content')
+ 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+ 
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -18,22 +29,31 @@
             <div class="card-body">
                 @csrf
                 <div>
-                    <label class="form-label">NIM</label>
-                    <input class="form-control" type="text" name="nim">
+                    <label class="form-label @error('nim') text-danger @enderror">NIM</label>
+                    <input class="form-control @error('nim') is-invalid @enderror" type="text" name="nim">
+                    @error('nim')
+                        <div class="invalid-feedback mb-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div>
-                    <label class="form-label">Nama</label>
-                    <input class="form-control" type="text" name="nama">
+                    <label class="form-label @error('nama') text-danger @enderror">Nama</label>
+                    <input class="form-control @error('nama') is-invalid @enderror" type="text" name="nama">
+                    @error('nama')
+                        <div class="invalid-feedback mb-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div>
-                    <label class="form-label">Jurusan</label>
-                    <select class="form-select" name="jurusan">
-                        <option value="1">TI</option>
-                        <option value="2">SK</option>
-                        <option value="3">DGM</option>
+                    <label class="form-label @error('jurusan') text-danger @enderror">Jurusan</label>
+                    <select class="form-select @error('jurusan') is-invalid @enderror" name="jurusan">
+                        @foreach ($jurusan as $j)
+                            <option value="{{ $j->id }}" {{ old('jurusan') == $j->id ? 'selected' : ''}}>{{ $j->nama }}</option>
+                        @endforeach
+                        @error('jurusan')
+                        <div class="invalid-feedback mb-2">{{ $message }}</div>
+                        @enderror
                     </select>
+                    
                 </div>
-
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>

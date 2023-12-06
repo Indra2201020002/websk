@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Mahasiswa;
-use App\Models\Jurusan;
+use App\Models\mahasiswa;
+use App\Models\jurusan;
 
 class MahasiswaController extends Controller
 {
@@ -35,7 +35,7 @@ class MahasiswaController extends Controller
     public function index()
     {
       
-        $mhs= Mahasiswa::with('jurusan')->get();
+        $mhs= mahasiswa::with('jurusan')->get();
 
         return view('mahasiswa.index', ['data' => $mhs]);
     }
@@ -43,29 +43,35 @@ class MahasiswaController extends Controller
     public function create()
     {
         //$jurusan = DB::table('jurusan')create;
-        $jurusan = Jurusan::all();
+        $jurusan = jurusan::all();
         return view('mahasiswa.create',['jurusan'=>$jurusan]);
     }
 
-    public function edit(Mahasiswa $mhs)
+    public function edit(mahasiswa $mhs)
     {
         
-        $jurusan = Jurusan::all();
+        $jurusan = jurusan::all();
 
         return view('mahasiswa.edit', ['data' => $mhs, 'id' => $mhs->id, 'jurusan' => $jurusan]);
     }
 
-    public function store(Request $request, Mahasiswa $mhs)
+    public function store(Request $request)
     {
-        $mhs = Mahasiswa::create([
-            'nim'=>$request->nim,
-            'nama'=>$request->nama,
-            'jurusan_id'=>$request->jurusan,
+        $validated = $request->validate([
+            'nim' => ['required', 'min:8', 'max:10'],
+            'nama' => 'required',
+            'jurusan_id' => 'required', 'exists:jurusan,id',
+        ]);
+
+        $mhs = mahasiswa::create([
+            'nim' => $validated['nim'],
+            'nama' => $validated['nama'],
+            'jurusan_id' => $validated['jurusan'],
         ]);
         return redirect(url('/mahasiswa'));
     }
 
-    public function update(Request $request, Mahasiswa $mhs)
+    public function update(Request $request, mahasiswa $mhs)
     {
         
         $mhs->update([
@@ -76,7 +82,7 @@ class MahasiswaController extends Controller
         return redirect(url('/mahasiswa'));
     }
 
-    public function destroy(Mahasiswa $mhs)
+    public function destroy(mahasiswa $mhs)
     {
 
         $mhs->delete();
